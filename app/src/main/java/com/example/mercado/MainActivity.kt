@@ -42,6 +42,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mercado.ui.TelaLogin.TelaLogin
+import com.example.mercado.ui.TelaMecanica.TelaMecanica
 import com.example.mercado.ui.theme.MercadoTheme
 
 class MainActivity : ComponentActivity() {
@@ -98,6 +99,11 @@ fun Mecanica() {
                 route = "TelaLogin"
             ) {
                 TelaLogin(espacoDasBarras = espacoDasBarras)
+            }
+            composable(
+                route = "TelaMecanica"
+            ){
+                TelaMecanica()
             }
         }
     }
