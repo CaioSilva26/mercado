@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Mercado</string>
-    <string name="login">Entrar</string>
-    <string name="senha">Senha</string>
+    <string name="login">login</string>
+    <string name="senha">senha</string>
+    <string name="confirmarSenha">confirmar</string>
+    <string name="nome">Nome</string>
 </resources>
