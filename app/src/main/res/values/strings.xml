@@ -4,4 +4,6 @@
     <string name="senha">senha</string>
     <string name="confirmarSenha">confirmar</string>
     <string name="nome">Nome</string>
+    <string name="login_erro">Login Incorreto</string>
+    <string name="senha_erro">Senha Incorreta</string>
 </resources>

@@ -27,14 +27,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.mercado.R
 
 
 @Composable
 fun TelaLogin(
-    espacoDasBarras:PaddingValues
-
-
+    espacoDasBarras: PaddingValues,
+    controleNavegacao: NavController
 ) {
 
     var nome by remember { mutableStateOf("") }
@@ -42,6 +42,9 @@ fun TelaLogin(
     var senha by remember { mutableStateOf("") }
     var confirmarSenha by remember { mutableStateOf("") }
     var cadastrar by remember { mutableStateOf(false) }
+    var logarErro by remember { mutableStateOf(false) }
+
+
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -64,24 +67,36 @@ fun TelaLogin(
                 CampoDeTexto(
                     value = nome,
                     onValueChange = { nome = it },
-                    idtexto = R.string.nome
+                    idtexto = R.string.nome,
+                    isError = false
                 )
             }
             CampoDeTexto(
                 value = login,
                 onValueChange = { login = it },
-                idtexto = R.string.login
+                idtexto = if (logarErro)
+                    R.string.login_erro
+                else
+                    R.string.login,
+                isError = logarErro
             )
+
             CampoDeTexto(
                 value = senha,
                 onValueChange = { senha = it },
-                idtexto = R.string.senha
+                idtexto = if (logarErro)
+                    R.string.senha_erro
+                else
+                    R.string.senha,
+                isError = logarErro
+
             )
             if (cadastrar) {
                 CampoDeTexto(
                     value = confirmarSenha,
                     onValueChange = { confirmarSenha = it },
-                    idtexto = R.string.confirmarSenha
+                    idtexto = R.string.confirmarSenha,
+                    isError = logarErro
                 )
             }
 
@@ -98,7 +113,13 @@ fun TelaLogin(
         Spacer(modifier = Modifier.size(10.dp))
         Button(
             onClick = {
-                cadastrar = false
+                if (senha == "1234" && login == "caiolollmao@gmail.com") {
+                    cadastrar = false
+                    logarErro = false
+                    controleNavegacao.navigate("TelaDiarioDeClasse")
+                } else {
+                    logarErro = true
+                }
             }
         ) {
             Text(
@@ -116,7 +137,8 @@ fun TelaLogin(
 fun CampoDeTexto(
     value: String,
     onValueChange: (String) -> Unit,
-    idtexto: Int
+    idtexto: Int,
+    isError: Boolean
 ) {
     TextField(
         value = value,
@@ -125,6 +147,8 @@ fun CampoDeTexto(
             Text(
                 text = stringResource(idtexto)
             )
-        }
+        },
+        isError = isError
+
     )
 }

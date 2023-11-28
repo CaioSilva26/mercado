@@ -50,7 +50,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MercadoTheme {
-                Mecanica()
+
 
             }
         }
@@ -77,7 +77,9 @@ fun Mecanica() {
                 navigationIcon = {
 
                     IconButton(
-                        onClick = { }
+                        onClick = {
+
+                        }
                     ) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
@@ -98,12 +100,22 @@ fun Mecanica() {
             composable(
                 route = "TelaLogin"
             ) {
-                TelaLogin(espacoDasBarras = espacoDasBarras)
+                TelaLogin(
+                    espacoDasBarras = espacoDasBarras,
+                    controleNavegacao = controleNavegacao
+
+                )
+
             }
             composable(
                 route = "TelaMecanica"
-            ){
-                TelaMecanica()
+            ) {
+                TelaMecanica(
+                    espacoDasBarras = espacoDasBarras,
+                    controleNavegacao = controleNavegacao
+
+                )
+
             }
         }
     }
